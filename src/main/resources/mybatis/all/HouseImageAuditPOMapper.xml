@@ -1,0 +1,462 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.mapper.all.HouseImageAuditPOMapper" >
+  <resultMap id="BaseResultMap" type="com.po.HouseImageAuditPO" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="houseId" property="houseid" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="imgKey" property="imgkey" jdbcType="VARCHAR" />
+    <result column="desc" property="desc" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="TINYINT" />
+    <result column="takePhotoTime" property="takephototime" jdbcType="TIMESTAMP" />
+    <result column="createTime" property="createtime" jdbcType="TIMESTAMP" />
+    <result column="updateTime" property="updatetime" jdbcType="TIMESTAMP" />
+    <result column="sourceId" property="sourceid" jdbcType="INTEGER" />
+    <result column="agentId" property="agentid" jdbcType="BIGINT" />
+    <result column="audit_status" property="auditStatus" jdbcType="TINYINT" />
+    <result column="employee_id" property="employeeId" jdbcType="INTEGER" />
+    <result column="audit_time" property="auditTime" jdbcType="TIMESTAMP" />
+    <result column="rejectreason" property="rejectreason" jdbcType="VARCHAR" />
+    <result column="batchTime" property="batchtime" jdbcType="TIMESTAMP" />
+    <result column="guestId" property="guestid" jdbcType="BIGINT" />
+    <result column="franchiseeAreaOrgId" property="franchiseeareaorgid" jdbcType="INTEGER" />
+    <result column="isLivePhoto" property="islivephoto" jdbcType="TINYINT" />
+    <result column="isLiveVideo" property="islivevideo" jdbcType="TINYINT" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause" >
+    <where >
+      <foreach collection="example.oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, houseId, type, imgKey, desc, status, takePhotoTime, createTime, updateTime, sourceId, 
+    agentId, audit_status, employee_id, audit_time, rejectreason, batchTime, guestId, 
+    franchiseeAreaOrgId, isLivePhoto, isLiveVideo
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.po.HouseImageAuditPOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from house_image_audit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from house_image_audit
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from house_image_audit
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.po.HouseImageAuditPOExample" >
+    delete from house_image_audit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.po.HouseImageAuditPO" >
+    insert into house_image_audit (id, houseId, type, 
+      imgKey, desc, status, 
+      takePhotoTime, createTime, updateTime, 
+      sourceId, agentId, audit_status, 
+      employee_id, audit_time, rejectreason, 
+      batchTime, guestId, franchiseeAreaOrgId, 
+      isLivePhoto, isLiveVideo)
+    values (#{id,jdbcType=BIGINT}, #{houseid,jdbcType=INTEGER}, #{type,jdbcType=INTEGER}, 
+      #{imgkey,jdbcType=VARCHAR}, #{desc,jdbcType=VARCHAR}, #{status,jdbcType=TINYINT}, 
+      #{takephototime,jdbcType=TIMESTAMP}, #{createtime,jdbcType=TIMESTAMP}, #{updatetime,jdbcType=TIMESTAMP}, 
+      #{sourceid,jdbcType=INTEGER}, #{agentid,jdbcType=BIGINT}, #{auditStatus,jdbcType=TINYINT}, 
+      #{employeeId,jdbcType=INTEGER}, #{auditTime,jdbcType=TIMESTAMP}, #{rejectreason,jdbcType=VARCHAR}, 
+      #{batchtime,jdbcType=TIMESTAMP}, #{guestid,jdbcType=BIGINT}, #{franchiseeareaorgid,jdbcType=INTEGER}, 
+      #{islivephoto,jdbcType=TINYINT}, #{islivevideo,jdbcType=TINYINT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.po.HouseImageAuditPO" >
+    insert into house_image_audit
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="houseid != null" >
+        houseId,
+      </if>
+      <if test="type != null" >
+        type,
+      </if>
+      <if test="imgkey != null" >
+        imgKey,
+      </if>
+      <if test="desc != null" >
+        desc,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="takephototime != null" >
+        takePhotoTime,
+      </if>
+      <if test="createtime != null" >
+        createTime,
+      </if>
+      <if test="updatetime != null" >
+        updateTime,
+      </if>
+      <if test="sourceid != null" >
+        sourceId,
+      </if>
+      <if test="agentid != null" >
+        agentId,
+      </if>
+      <if test="auditStatus != null" >
+        audit_status,
+      </if>
+      <if test="employeeId != null" >
+        employee_id,
+      </if>
+      <if test="auditTime != null" >
+        audit_time,
+      </if>
+      <if test="rejectreason != null" >
+        rejectreason,
+      </if>
+      <if test="batchtime != null" >
+        batchTime,
+      </if>
+      <if test="guestid != null" >
+        guestId,
+      </if>
+      <if test="franchiseeareaorgid != null" >
+        franchiseeAreaOrgId,
+      </if>
+      <if test="islivephoto != null" >
+        isLivePhoto,
+      </if>
+      <if test="islivevideo != null" >
+        isLiveVideo,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="houseid != null" >
+        #{houseid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        #{type,jdbcType=INTEGER},
+      </if>
+      <if test="imgkey != null" >
+        #{imgkey,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="takephototime != null" >
+        #{takephototime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sourceid != null" >
+        #{sourceid,jdbcType=INTEGER},
+      </if>
+      <if test="agentid != null" >
+        #{agentid,jdbcType=BIGINT},
+      </if>
+      <if test="auditStatus != null" >
+        #{auditStatus,jdbcType=TINYINT},
+      </if>
+      <if test="employeeId != null" >
+        #{employeeId,jdbcType=INTEGER},
+      </if>
+      <if test="auditTime != null" >
+        #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rejectreason != null" >
+        #{rejectreason,jdbcType=VARCHAR},
+      </if>
+      <if test="batchtime != null" >
+        #{batchtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="guestid != null" >
+        #{guestid,jdbcType=BIGINT},
+      </if>
+      <if test="franchiseeareaorgid != null" >
+        #{franchiseeareaorgid,jdbcType=INTEGER},
+      </if>
+      <if test="islivephoto != null" >
+        #{islivephoto,jdbcType=TINYINT},
+      </if>
+      <if test="islivevideo != null" >
+        #{islivevideo,jdbcType=TINYINT},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.po.HouseImageAuditPOExample" resultType="java.lang.Integer" >
+    select count(*) from house_image_audit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map" >
+    update house_image_audit
+    <set >
+      <if test="record.id != null" >
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.houseid != null" >
+        houseId = #{record.houseid,jdbcType=INTEGER},
+      </if>
+      <if test="record.type != null" >
+        type = #{record.type,jdbcType=INTEGER},
+      </if>
+      <if test="record.imgkey != null" >
+        imgKey = #{record.imgkey,jdbcType=VARCHAR},
+      </if>
+      <if test="record.desc != null" >
+        desc = #{record.desc,jdbcType=VARCHAR},
+      </if>
+      <if test="record.status != null" >
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.takephototime != null" >
+        takePhotoTime = #{record.takephototime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.createtime != null" >
+        createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.updatetime != null" >
+        updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.sourceid != null" >
+        sourceId = #{record.sourceid,jdbcType=INTEGER},
+      </if>
+      <if test="record.agentid != null" >
+        agentId = #{record.agentid,jdbcType=BIGINT},
+      </if>
+      <if test="record.auditStatus != null" >
+        audit_status = #{record.auditStatus,jdbcType=TINYINT},
+      </if>
+      <if test="record.employeeId != null" >
+        employee_id = #{record.employeeId,jdbcType=INTEGER},
+      </if>
+      <if test="record.auditTime != null" >
+        audit_time = #{record.auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.rejectreason != null" >
+        rejectreason = #{record.rejectreason,jdbcType=VARCHAR},
+      </if>
+      <if test="record.batchtime != null" >
+        batchTime = #{record.batchtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.guestid != null" >
+        guestId = #{record.guestid,jdbcType=BIGINT},
+      </if>
+      <if test="record.franchiseeareaorgid != null" >
+        franchiseeAreaOrgId = #{record.franchiseeareaorgid,jdbcType=INTEGER},
+      </if>
+      <if test="record.islivephoto != null" >
+        isLivePhoto = #{record.islivephoto,jdbcType=TINYINT},
+      </if>
+      <if test="record.islivevideo != null" >
+        isLiveVideo = #{record.islivevideo,jdbcType=TINYINT},
+      </if>
+    </set>
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map" >
+    update house_image_audit
+    set id = #{record.id,jdbcType=BIGINT},
+      houseId = #{record.houseid,jdbcType=INTEGER},
+      type = #{record.type,jdbcType=INTEGER},
+      imgKey = #{record.imgkey,jdbcType=VARCHAR},
+      desc = #{record.desc,jdbcType=VARCHAR},
+      status = #{record.status,jdbcType=TINYINT},
+      takePhotoTime = #{record.takephototime,jdbcType=TIMESTAMP},
+      createTime = #{record.createtime,jdbcType=TIMESTAMP},
+      updateTime = #{record.updatetime,jdbcType=TIMESTAMP},
+      sourceId = #{record.sourceid,jdbcType=INTEGER},
+      agentId = #{record.agentid,jdbcType=BIGINT},
+      audit_status = #{record.auditStatus,jdbcType=TINYINT},
+      employee_id = #{record.employeeId,jdbcType=INTEGER},
+      audit_time = #{record.auditTime,jdbcType=TIMESTAMP},
+      rejectreason = #{record.rejectreason,jdbcType=VARCHAR},
+      batchTime = #{record.batchtime,jdbcType=TIMESTAMP},
+      guestId = #{record.guestid,jdbcType=BIGINT},
+      franchiseeAreaOrgId = #{record.franchiseeareaorgid,jdbcType=INTEGER},
+      isLivePhoto = #{record.islivephoto,jdbcType=TINYINT},
+      isLiveVideo = #{record.islivevideo,jdbcType=TINYINT}
+    <if test="_parameter != null" >
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.po.HouseImageAuditPO" >
+    update house_image_audit
+    <set >
+      <if test="houseid != null" >
+        houseId = #{houseid,jdbcType=INTEGER},
+      </if>
+      <if test="type != null" >
+        type = #{type,jdbcType=INTEGER},
+      </if>
+      <if test="imgkey != null" >
+        imgKey = #{imgkey,jdbcType=VARCHAR},
+      </if>
+      <if test="desc != null" >
+        desc = #{desc,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="takephototime != null" >
+        takePhotoTime = #{takephototime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createtime != null" >
+        createTime = #{createtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updatetime != null" >
+        updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="sourceid != null" >
+        sourceId = #{sourceid,jdbcType=INTEGER},
+      </if>
+      <if test="agentid != null" >
+        agentId = #{agentid,jdbcType=BIGINT},
+      </if>
+      <if test="auditStatus != null" >
+        audit_status = #{auditStatus,jdbcType=TINYINT},
+      </if>
+      <if test="employeeId != null" >
+        employee_id = #{employeeId,jdbcType=INTEGER},
+      </if>
+      <if test="auditTime != null" >
+        audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="rejectreason != null" >
+        rejectreason = #{rejectreason,jdbcType=VARCHAR},
+      </if>
+      <if test="batchtime != null" >
+        batchTime = #{batchtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="guestid != null" >
+        guestId = #{guestid,jdbcType=BIGINT},
+      </if>
+      <if test="franchiseeareaorgid != null" >
+        franchiseeAreaOrgId = #{franchiseeareaorgid,jdbcType=INTEGER},
+      </if>
+      <if test="islivephoto != null" >
+        isLivePhoto = #{islivephoto,jdbcType=TINYINT},
+      </if>
+      <if test="islivevideo != null" >
+        isLiveVideo = #{islivevideo,jdbcType=TINYINT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.po.HouseImageAuditPO" >
+    update house_image_audit
+    set houseId = #{houseid,jdbcType=INTEGER},
+      type = #{type,jdbcType=INTEGER},
+      imgKey = #{imgkey,jdbcType=VARCHAR},
+      desc = #{desc,jdbcType=VARCHAR},
+      status = #{status,jdbcType=TINYINT},
+      takePhotoTime = #{takephototime,jdbcType=TIMESTAMP},
+      createTime = #{createtime,jdbcType=TIMESTAMP},
+      updateTime = #{updatetime,jdbcType=TIMESTAMP},
+      sourceId = #{sourceid,jdbcType=INTEGER},
+      agentId = #{agentid,jdbcType=BIGINT},
+      audit_status = #{auditStatus,jdbcType=TINYINT},
+      employee_id = #{employeeId,jdbcType=INTEGER},
+      audit_time = #{auditTime,jdbcType=TIMESTAMP},
+      rejectreason = #{rejectreason,jdbcType=VARCHAR},
+      batchTime = #{batchtime,jdbcType=TIMESTAMP},
+      guestId = #{guestid,jdbcType=BIGINT},
+      franchiseeAreaOrgId = #{franchiseeareaorgid,jdbcType=INTEGER},
+      isLivePhoto = #{islivephoto,jdbcType=TINYINT},
+      isLiveVideo = #{islivevideo,jdbcType=TINYINT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <select resultMap="BaseResultMap" parameterType="com.po.HouseImageAuditPOExample" id="selectByExampleWithRowbounds" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from house_image_audit
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+</mapper>
