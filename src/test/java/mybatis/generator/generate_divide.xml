@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE generatorConfiguration PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN" "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd" >
+<generatorConfiguration>
+	<!-- 驱动程序 -->
+	<classPathEntry
+		location="./src/test/resources/mysql-connector-java-5.1.38.jar" />
+	
+	<!-- 生成读mapper -->	
+	<context id="read" targetRuntime="MyBatis3">
+		<!-- po类生成equals 和 hashCode 方法 -->
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+		<!-- po类添加序列化接口 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+		<!-- po类添加toString方法
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin> -->
+		<!-- 添加分页查询 -->
+		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
+		
+		<commentGenerator >
+			<!-- 是否取消注释 -->
+			<property name="suppressAllComments" value="true"/>
+			<!-- 是否生成注释代时间戳 -->
+    		<property name="suppressDate" value="true"/>
+		</commentGenerator>
+		
+		<!--测试数据库链接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://10.0.18.188/milestone" userId="alan"
+			password="alan" />
+			
+		<javaTypeResolver>
+	    	<property name="forceBigDecimals" value="false" />
+    	</javaTypeResolver>
+
+		<!-- java entity生成位置 -->
+		<javaModelGenerator targetPackage="com.po"
+			targetProject="./src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="false" />
+		</javaModelGenerator>
+
+		<!-- mapper xml配置文件生成位置 -->
+		<sqlMapGenerator targetPackage="mybatis.read"
+			targetProject="./src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- mapper 接口生成位置 -->
+		<javaClientGenerator targetPackage="com.mapper.read"
+			targetProject="./src/main/java"
+			type="XMLMAPPER">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		
+		<table tableName="house_image_audit" domainObjectName="HouseImageAuditPO"
+			enableCountByExample="true"
+			enableSelectByExample="true"
+			enableSelectByPrimaryKey="true"
+			
+			enableDeleteByExample="false"
+			enableDeleteByPrimaryKey="false"
+			enableInsert="false"
+			enableUpdateByExample="false"
+			enableUpdateByPrimaryKey="false">
+		</table>
+	</context>
+	<!-- 生成写mapper -->	
+	<context id="wirte" targetRuntime="MyBatis3">
+		<!-- po类生成equals 和 hashCode 方法 -->
+		<plugin type="org.mybatis.generator.plugins.EqualsHashCodePlugin"></plugin>
+		<!-- po类添加序列化接口 -->
+		<plugin type="org.mybatis.generator.plugins.SerializablePlugin"></plugin>
+		<!-- po类添加toString方法
+		<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin> -->
+		<!-- 添加分页查询 -->
+		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
+		
+		<commentGenerator >
+			<!-- 是否取消注释 -->
+			<property name="suppressAllComments" value="true"/>
+    		<property name="suppressDate" value="true"/>
+		</commentGenerator>
+		
+		<!--测试数据库链接 -->
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://10.0.18.188/milestone" userId="alan"
+			password="alan" />
+			
+		<javaTypeResolver>
+	    	<property name="forceBigDecimals" value="false" />
+    	</javaTypeResolver>
+
+		<!-- java entity生成位置 -->
+		<javaModelGenerator targetPackage="com.po"
+			targetProject="./src/main/java">
+			<property name="enableSubPackages" value="false" />
+			<property name="trimStrings" value="false" />
+		</javaModelGenerator>
+
+		<!-- mapper xml配置文件生成位置 -->
+		<sqlMapGenerator targetPackage="mybatis.write"
+			targetProject="./src/main/resources">
+			<property name="enableSubPackages" value="false" />
+		</sqlMapGenerator>
+
+		<!-- mapper 接口生成位置 -->
+		<javaClientGenerator targetPackage="com.mapper.write"
+			targetProject="./src/main/java"
+			type="XMLMAPPER">
+			<property name="enableSubPackages" value="false" />
+		</javaClientGenerator>
+		
+		<table tableName="house_image_audit" domainObjectName="HouseImageAuditPO"
+			enableCountByExample="false"
+			enableSelectByExample="false"
+			enableSelectByPrimaryKey="false"
+			
+			enableDeleteByExample="true"
+			enableDeleteByPrimaryKey="true"
+			enableInsert="true"
+			enableUpdateByExample="true"
+			enableUpdateByPrimaryKey="true">
+		</table>
+	</context>
+</generatorConfiguration>
