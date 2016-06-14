@@ -1,2 +1,2 @@
-# MybaitsGenerator
-Mybaits自动生成工具
+# MybatisGenerator
+Mybatis自动生成工具
