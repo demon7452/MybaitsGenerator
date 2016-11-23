@@ -15,6 +15,8 @@
 		<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin> -->
 		<!-- 添加分页查询 -->
 		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
+		<!-- 自定义插件：字段添加注释 -->
+		<plugin type="com.generator.plugins.ModelFieldCommentPlugin"></plugin>
 		
 		<commentGenerator >
 			<!-- 是否取消注释 -->
@@ -74,7 +76,9 @@
 		<plugin type="org.mybatis.generator.plugins.ToStringPlugin"></plugin> -->
 		<!-- 添加分页查询 -->
 		<plugin type="org.mybatis.generator.plugins.RowBoundsPlugin"></plugin>
-		
+		<!-- 自定义插件：字段添加注释 -->
+		<plugin type="com.generator.plugins.ModelFieldCommentPlugin"></plugin>
+
 		<commentGenerator >
 			<!-- 是否取消注释 -->
 			<property name="suppressAllComments" value="true"/>
